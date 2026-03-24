@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy – SF Org Manager</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f9f9fb;
+      color: #1a1a2e;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+    .card {
+      max-width: 760px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      padding: 52px 60px;
+    }
+    h1 { font-size: 2rem; font-weight: 800; color: #0f0f23; margin-bottom: 6px; }
+    .updated { font-size: 0.85rem; color: #888; margin-bottom: 36px; }
+    h2 {
+      font-size: 1.1rem; font-weight: 700; color: #0f0f23;
+      margin-top: 32px; margin-bottom: 10px;
+      padding-left: 12px; border-left: 3px solid #4f46e5;
+    }
+    p { font-size: 0.97rem; color: #444; margin-bottom: 8px; }
+    ul { margin: 8px 0 8px 20px; color: #444; font-size: 0.97rem; }
+    li { margin-bottom: 6px; }
+    code {
+      background: #f0f0f7; color: #4f46e5;
+      padding: 2px 6px; border-radius: 4px; font-size: 0.88em;
+    }
+    .badge {
+      display: inline-block; background: #eef2ff; color: #4f46e5;
+      font-size: 0.8rem; font-weight: 600;
+      padding: 4px 12px; border-radius: 999px; margin-bottom: 28px;
+    }
+    footer {
+      margin-top: 48px; padding-top: 20px; border-top: 1px solid #eee;
+      font-size: 0.8rem; color: #aaa; text-align: center;
+    }
+    @media (max-width: 600px) {
+      .card { padding: 32px 24px; }
+      h1 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: March 23, 2026</p>
+    <span class="badge">SF Org Manager – Chrome Extension</span>
+
+    <h2>Overview</h2>
+    <p>SF Org Manager is a browser extension that discovers and displays Salesforce orgs associated with active browser sessions. This policy explains what data the extension accesses, how it is used, and what is stored. We do not collect, sell, or share your data with any third parties.</p>
+
+    <h2>Data We Access</h2>
+    <p>The extension accesses the following data solely to provide its core functionality:</p>
+    <ul>
+      <li><strong>Salesforce session cookies (<code>sid</code>):</strong> Scanned on Salesforce instance hosts (<code>*.my.salesforce.com</code>, <code>*.force.com</code>) to discover active org sessions. The org ID is parsed from the cookie value for deduplication purposes.</li>
+      <li><strong>Salesforce REST API responses:</strong> Each session is validated via <code>GET /services/data/v60.0/</code> using the <code>sid</code> as a Bearer token. Active sessions are enriched with org metadata (Organization SOQL), user metadata (Chatter <code>users/me</code> and User SOQL for profile name). This data is used only for display in the extension popup.</li>
+      <li><strong>Alias and nickname hints:</strong> Cookie name heuristics (e.g. <code>alias</code> or <code>nickname</code> in cookie names) and user-saved aliases from extension storage are used to label org cards.</li>
+    </ul>
+
+    <h2>Local Storage and Caching</h2>
+    <p>The extension persists display metadata locally using <code>chrome.storage.local</code> (or <code>browser.storage.local</code> on Firefox). This cache includes:</p>
+    <ul>
+      <li>Org and user metadata retrieved from the Salesforce REST API (e.g. org name, org type, username, profile name)</li>
+      <li>Aliases you have manually saved within the extension</li>
+    </ul>
+    <p>This data is stored entirely on your device. It is never transmitted to any server operated by the extension developer and is used exclusively to render org cards in the popup UI.</p>
+
+    <h2>How Data Is Used</h2>
+    <p>All data accessed by the extension is used solely to:</p>
+    <ul>
+      <li>Discover and identify Salesforce orgs tied to active browser sessions</li>
+      <li>Display org type, session status, and user metadata in the popup</li>
+      <li>Enable the Open Org and CLI Copy (<code>sf org open</code>) features</li>
+    </ul>
+    <p>Data is never used for analytics, advertising, profiling, or any purpose beyond the above.</p>
+
+    <h2>Third-Party Sharing</h2>
+    <p>No data accessed or stored by this extension is shared with, sold to, or transmitted to any third party. The only external network requests made are directly to your own Salesforce instance hosts for session validation and metadata enrichment.</p>
+
+    <h2>Permissions</h2>
+    <p>The extension requests the following permissions, each strictly necessary for its functionality:</p>
+    <ul>
+      <li><code>cookies</code> – to read <code>sid</code> session cookies on Salesforce hosts</li>
+      <li><code>storage</code> – to persist the display cache and user-saved aliases locally on your device</li>
+      <li>Host permissions for <code>https://*.salesforce.com/*</code> and <code>https://*.force.com/*</code> – to make authenticated REST API calls to your Salesforce instances</li>
+    </ul>
+
+    <h2>Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Any changes will be reflected by updating the "Last updated" date at the top of this page.</p>
+
+    <h2>Contact</h2>
+    <p>If you have any questions about this Privacy Policy, please contact us via the Chrome Web Store listing page.</p>
+
+    <footer>This privacy policy applies to SF Org Manager as listed on the Chrome Web Store.</footer>
+  </div>
+</body>
+</html>
